@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Material_Personas</string>
+    <string name="action_settings">Settings</string>
+    <string name="crear_persoas">Crear Personas</string>
+    <string name="cedula">Cedula</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="guardar">Guardar</string>
+    <string name="borrar">Borrar</string>
+</resources>
