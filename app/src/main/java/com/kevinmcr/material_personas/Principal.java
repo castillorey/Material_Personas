@@ -31,10 +31,11 @@ public class Principal extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         lstOpciones = findViewById(R.id.lstOpciones);
-        personas = new ArrayList<>();
-        personas.add(new Persona("1140887556","Kevin","Castillo",R.drawable.images2,1));
-        personas.add(new Persona("11408874454","Luis","Sarmiento",R.drawable.images2,1));
-        personas.add(new Persona("11408870045","Pedro","Castro",R.drawable.images2,1));
+        personas = Datos.obtener();
+//        personas = new ArrayList<>();
+//        personas.add(new Persona("1140887556","Kevin","Castillo",R.drawable.images2,1));
+//        personas.add(new Persona("11408874454","Luis","Sarmiento",R.drawable.images,1));
+//        personas.add(new Persona("11408870045","Pedro","Castro",R.drawable.images3,1));
 
         llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -45,8 +46,10 @@ public class Principal extends AppCompatActivity {
     }
 
     public void crearPersonas(View v){
-        Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        i = new Intent(Principal.this,CrearPersona.class);
+        startActivity(i);
+
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
