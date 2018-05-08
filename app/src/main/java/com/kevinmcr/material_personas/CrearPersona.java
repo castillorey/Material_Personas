@@ -28,7 +28,7 @@ public class CrearPersona extends AppCompatActivity {
         cmbSexo = findViewById(R.id.cmbSexo);
 
         opc = this.getResources().getStringArray(R.array.sexo);
-        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,opc);
+        adapter = new ArrayAdapter<String>(this,R.layout.custom_spinner,opc);
         cmbSexo.setAdapter(adapter);
 
         fotos = new ArrayList<Integer>();
@@ -38,16 +38,16 @@ public class CrearPersona extends AppCompatActivity {
     }
 
     public void guardar(View v){
-        String ced, nomb, apell;
+        String ced, nomb, apell,id;
         int sexo, foto;
         foto = Datos.fotoAleatoria(fotos);
         ced = txtCedula.getText().toString();
         apell = txtApellido.getText().toString();
         nomb = txtNombre.getText().toString();
         sexo = cmbSexo.getSelectedItemPosition();
+        id = Datos.getId();
 
-
-        Persona p = new Persona(ced,nomb,apell,foto,sexo);
+        Persona p = new Persona(id,ced,nomb,apell,foto,sexo);
         p.guardar();
         Snackbar.make(v, getResources().getString(R.string.mensaje_guardado_exitoso), Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();

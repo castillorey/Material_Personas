@@ -5,15 +5,24 @@ package com.kevinmcr.material_personas;
  */
 
 public class Persona {
-    private String cedula, nombre, apellido;
+    private String cedula, nombre, apellido,id;
     private int foto, sexo;
 
-    public Persona(String cedula, String nombre, String apellido, int foto, int sexo) {
+    public Persona(String id, String cedula, String nombre, String apellido, int foto, int sexo) {
+        this.id = id;
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.foto = foto;
         this.sexo = sexo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCedula() {

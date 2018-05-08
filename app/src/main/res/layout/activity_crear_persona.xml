@@ -78,12 +78,12 @@
 
         <Button
             android:id="@+id/button2"
-            style="@style/Widget.AppCompat.Button.Colored"
+            style="@android:style/Widget.DeviceDefault.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="limpiar"
             android:text="@string/limpiar"
-            android:textAppearance="@android:style/TextAppearance.Material" />
+            android:textAppearance="@android:style/TextAppearance.Material.Widget.Button" />
     </LinearLayout>
 </LinearLayout>

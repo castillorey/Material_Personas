@@ -9,7 +9,9 @@
     <string name="limpiar">Limpiar</string>
     <string name="masculino">Masculino</string>
     <string name="femenino">Femenino</string>
+    <string name="vacio">Seleccione un sexo</string>
     <string-array name="sexo">
+        <item>@string/vacio</item>
         <item>@string/masculino</item>
         <item>@string/femenino</item>
     </string-array>
