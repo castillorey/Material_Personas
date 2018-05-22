@@ -12,6 +12,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class Principal extends AppCompatActivity {
@@ -21,7 +27,8 @@ public class Principal extends AppCompatActivity {
     private AdaptadorPersona adapter;
     private LinearLayoutManager llm;
     private ArrayList<Integer> fotos;
-
+    private DatabaseReference databaseReference;
+    private String bd = "Personas";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +38,8 @@ public class Principal extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         lstOpciones = findViewById(R.id.lstOpciones);
-        personas = Datos.obtener();
-//        personas = new ArrayList<>();
+
+        personas = new ArrayList<>();
 //        personas.add(new Persona("1140887556","Kevin","Castillo",R.drawable.images2,1));
 //        personas.add(new Persona("11408874454","Luis","Sarmiento",R.drawable.images,1));
 //        personas.add(new Persona("11408870045","Pedro","Castro",R.drawable.images3,1));
@@ -43,6 +50,28 @@ public class Principal extends AppCompatActivity {
 
         lstOpciones.setLayoutManager(llm);
         lstOpciones.setAdapter(adapter);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child(bd).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                personas.clear();
+                if(dataSnapshot.exists()){
+                    for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                        Persona p = snapshot.getValue(Persona.class);
+                        personas.add(p);
+                    }
+                }
+
+                adapter.notifyDataSetChanged();
+                Datos.setPersonas(personas);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void crearPersonas(View v){
