@@ -11,6 +11,11 @@ public class Persona {
     public Persona(){
 
     }
+
+    public Persona(String id){
+        this.id = id;
+    }
+
     public Persona(String id, String cedula, String nombre, String apellido, int foto, int sexo) {
         this.id = id;
         this.cedula = cedula;
@@ -70,5 +75,9 @@ public class Persona {
 
     public void guardar(){
         Datos.guardar(this);
+    }
+
+    public void eliminar(){
+        Datos.eliminarPersona(this);
     }
 }

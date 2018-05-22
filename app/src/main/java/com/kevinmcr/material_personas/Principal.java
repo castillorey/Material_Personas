@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Principal extends AppCompatActivity {
+public class Principal extends AppCompatActivity implements AdaptadorPersona.OnPersonaClickListener {
     private RecyclerView lstOpciones;
     private Intent i;
     private ArrayList<Persona> personas;
@@ -46,7 +46,7 @@ public class Principal extends AppCompatActivity {
 
         llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
-        adapter = new AdaptadorPersona(personas);
+        adapter = new AdaptadorPersona(personas, this);
 
         lstOpciones.setLayoutManager(llm);
         lstOpciones.setAdapter(adapter);
@@ -100,5 +100,20 @@ public class Principal extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onPersonaClick(Persona p) {
+        Intent i = new Intent(Principal.this, DetallePersona.class);
+        Bundle b = new Bundle();
+        b.putString("id",p.getId());
+        b.putString("cedula",p.getCedula());
+        b.putString("nombre",p.getNombre());
+        b.putString("apellido",p.getApellido());
+        b.putInt("sexo",p.getSexo());
+        b.putInt("sexo",p.getFoto());
+
+        i.putExtra("datos",b);
+        startActivity(i);
     }
 }
